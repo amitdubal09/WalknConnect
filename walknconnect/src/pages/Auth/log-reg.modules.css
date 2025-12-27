@@ -1,0 +1,144 @@
+#header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 1px 1px 9px #0000002e;
+}
+
+#main {
+    height: 100vh;
+    width: 100%;
+    background-image: url('/login-bg-img.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -2;
+    background-position: center;
+    position: absolute;
+    text-align: center;
+}
+
+.main-container {
+    align-items: center;
+    display: flex;
+    height: 90vh;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.main-container p {
+    font-size: 15px;
+}
+
+#walking-men {
+    width: 235px;
+    position: absolute;
+    margin-top: 10px;
+    z-index: -1;
+    left: 100px;
+    bottom: 100px;
+}
+
+.main-container input {
+    padding: 13px 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.236);
+    outline: none;
+    margin: 15px;
+}
+
+.main-container input::placeholder {
+    color: black;
+}
+
+.input-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.input-dropdown input {
+    padding: 13px 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.236);
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Arrow icon */
+.dropdown-arrow {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    pointer-events: none;
+    color: black;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when dropdown is open */
+.input-dropdown.open .dropdown-arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Dropdown box */
+.dropdown-options {
+    position: absolute;
+    top: 65px;
+    width: 80%;
+    left: 50px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px black;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* Dropdown items */
+.dropdown-options div {
+    padding: 13px 20px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.dropdown-options div:hover {
+    background-color: #10b981;
+    color: white;
+}
+
+.main-container .submit {
+    background-color: #10b981 !important;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#auth-head {
+    margin-bottom: 30px;
+}
+
+.login-img {
+    width: 10%;
+}
+
+#login,
+#register {
+    background-color: #ffffff89;
+    border-radius: 10px;
+    width: 30%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+#login input,
+#register input {
+    width: 90%;
+}
+
+.submit {
+    color: white;
+}

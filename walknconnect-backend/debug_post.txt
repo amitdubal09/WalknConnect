@@ -1,0 +1,10 @@
+Array
+(
+    [name] => Amit Dattatray Dubal
+    [email] => amitdubal2005@gmail.com
+    [phone] => 8879325268
+    [aadhar] => 307661463849
+    [dob] => 2025-12-18
+    [address] => d sdb
+    [user_id] => 1
+)

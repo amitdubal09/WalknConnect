@@ -1,0 +1,21 @@
+Array
+(
+    [profile_pic] => Array
+        (
+            [name] => amit.jpeg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php3A4E.tmp
+            [error] => 0
+            [size] => 97752
+        )
+
+    [aadhar_pic] => Array
+        (
+            [name] => python.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php3A4F.tmp
+            [error] => 0
+            [size] => 2316516
+        )
+
+)

@@ -1,0 +1,37 @@
+.section {
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#hero-head {
+    font-weight: bold;
+    font-size: 55px;
+}
+
+#hero-head-span {
+    color: #10b981;
+}
+
+#hero-para {
+    color: rgb(73, 73, 73);
+}
+
+#login-link {
+    margin-top: 25px;
+}
+
+#link {
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    background-color: #10b981;
+    padding: 10px 20px;
+}
+
+.sub-section-2 img {
+    width: 80%;
+    border-radius: 15px;
+}
