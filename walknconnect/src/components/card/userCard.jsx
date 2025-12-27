@@ -1,6 +1,7 @@
 import './cards.modules.css';
 import { Link } from 'react-router-dom';
 
+
 const UserCard = ({ user, currentUser }) => {
     // If the current user is a walker and this card belongs to them, don't render
     if (currentUser && currentUser.id === user.id) {

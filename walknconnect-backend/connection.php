@@ -5,6 +5,7 @@ $user = "root";          // change if different
 $password = "";          // add password if set
 $database = "walknconnect_db";
 
+
 // Create connection
 $conn = new mysqli($host, $user, $password, $database);
 
