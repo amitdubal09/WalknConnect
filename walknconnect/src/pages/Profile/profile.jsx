@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./profile.modules.css";
-import { User, Mail, Phone, Calendar, MapPin } from "lucide-react";
-import ProfileForm from "../../components/profile-form/profile-form.jsx";
+import { User, Mail, Phone, Calendar, MapPin, Building2, FileUser, Book } from "lucide-react";
+import ProfileForm from "../../components/profile-form/profile-form.jsx"; // or use CreateProfile
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
@@ -24,11 +24,14 @@ export default function Profile() {
     const fetchProfile = async () => {
         try {
             const res = await fetch(
-                `http://localhost/WalknConnect/walknconnect-backend/profile.php?user_id=${user.id}`
+                `http://localhost/WalknConnect/walknconnect-backend/profile.php?id=${user.id}`
             );
             const data = await res.json();
+
             if (data.success) {
                 setProfile(data.profile);
+            } else {
+                console.error(data.message);
             }
         } catch (err) {
             console.error("Fetch profile error:", err);
@@ -38,7 +41,7 @@ export default function Profile() {
     };
 
 
-    // If user clicks "Create Profile" or "Update Profile"
+    // CREATE PROFILE
     if (showForm) {
         return (
             <ProfileForm
@@ -52,21 +55,44 @@ export default function Profile() {
         );
     }
 
-    // Show message if profile doesn't exist or profile_pic is missing
-    if (!profile || !profile.profile_pic) {
+    //logic for complete user profile
+    const isProfileComplete = (profile) => {
+        if (!profile) return false;
+
+        const requiredFields = [
+            "full_name",
+            "phone",
+            "gender",
+            "city",
+            "dob",
+            "address",
+            "bio",
+            "profile_pic"
+        ];
+
+        return requiredFields.every(
+            (field) => profile[field] && profile[field].toString().trim() !== ""
+        );
+    };
+
+
+    // SHOW CREATE PROFILE BUTTON IF PROFILE NOT EXISTS
+
+    if (!isProfileComplete(profile)) {
         return (
             <div className="profile-container">
                 <div className="profile-wrapper center">
-                    <h2>hiii {user.name},You haven’t created your profile yet</h2>
+                    <h2>Hello {user.name}, Please complete your profile to continue</h2>
                     <button onClick={() => setShowForm(true)}>
-                        Create Profile
+                        Create / Complete Profile
                     </button>
                 </div>
             </div>
         );
     }
 
-    // Show profile if it exists
+
+    // SHOW EXISTING PROFILE
     return (
         <div className="profile-container">
             <div className="profile-wrapper">
@@ -107,11 +133,15 @@ export default function Profile() {
                         <p className="field-value">{profile.gender}</p>
                     </div>
                     <div className="field-group">
-                        <label className="field-label">City</label>
+                        <label className="field-label"><Building2 />City</label>
                         <p className="field-value">{profile.city}</p>
                     </div>
                     <div className="field-group full-width">
-                        <label className="field-label">Bio</label>
+                        <label className="field-label"><FileUser /> role</label>
+                        <p className="field-value">{profile.role}</p>
+                    </div>
+                    <div className="field-group full-width">
+                        <label className="field-label"><Book />Bio</label>
                         <p className="field-value">{profile.bio}</p>
                     </div>
                     <div className="field-group full-width">

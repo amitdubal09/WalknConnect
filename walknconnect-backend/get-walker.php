@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 // Only fetch walkers who have all required fields filled
 $sql = "SELECT u.id, u.full_name, u.email, u.phone, u.city, u.profile_pic
         FROM users u
-        LEFT JOIN partners p ON u.id = p.user_id
+        LEFT JOIN partners p ON u.id = p.id
         WHERE u.role = 'walker'
         AND u.full_name IS NOT NULL AND u.full_name != ''
         AND u.phone IS NOT NULL AND u.phone != ''
