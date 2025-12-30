@@ -29,7 +29,7 @@ $login = trim($data['login']);
 $password = trim($data['password']);
 
 /* ✅ Find user by email, full_name, or phone */
-$stmt = $conn->prepare("SELECT id, full_name, email, phone, password, role FROM users WHERE email = ? OR full_name = ? OR phone = ?");
+$stmt = $conn->prepare("SELECT id, full_name, email, phone, password, role, profile_pic FROM users WHERE email = ? OR full_name = ? OR phone = ?");
 $stmt->bind_param("sss", $login, $login, $login);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -55,7 +55,9 @@ echo json_encode([
         "id" => $user['id'],
         "name" => $user['full_name'],
         "email" => $user['email'],
-        "phone" => $user['phone']
+        "phone" => $user['phone'],
+        "role" => $user['role'],
+        "profile_pic" => $user['profile_pic']
     ]
 ]);
 ?>

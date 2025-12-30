@@ -68,6 +68,7 @@ const LogReg = () => {
       const data = await res.json();
 
       if (data.status === "success") {
+        console.log("LOGIN RESPONSE:", data.user);
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/");
       } else {

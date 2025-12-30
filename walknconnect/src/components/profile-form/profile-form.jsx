@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./profile-form.modules.css";
 
-const CreateProfile = ({ user, userType = "Vendor", onSuccess }) => {
+const CreateProfile = ({ user, onSuccess }) => {
 
     const [formData, setFormData] = useState({
         full_name: "",
@@ -13,11 +13,6 @@ const CreateProfile = ({ user, userType = "Vendor", onSuccess }) => {
         city: "",
         bio: "",
         profile_pic: null,
-        aadhar_pic: null,
-        experience: "",
-        walking_speed: "",
-        preferred_time: "",
-        price_per_hour: "",
     });
 
     const [loading, setLoading] = useState(false);
@@ -51,7 +46,6 @@ const CreateProfile = ({ user, userType = "Vendor", onSuccess }) => {
 
             // 🔑 REQUIRED
             form.append("id", user.id);
-            form.append("user_type", userType);
 
             // 🔹 Common fields
             form.append("full_name", formData.full_name);
@@ -61,14 +55,6 @@ const CreateProfile = ({ user, userType = "Vendor", onSuccess }) => {
             form.append("gender", formData.gender);
             form.append("city", formData.city);
             form.append("bio", formData.bio);
-
-            // 🔹 Walker-only fields
-            if (userType === "Walker") {
-                form.append("experience", formData.experience);
-                form.append("walking_speed", formData.walking_speed);
-                form.append("preferred_time", formData.preferred_time);
-                form.append("price_per_hour", formData.price_per_hour);
-            }
 
             // 🔹 Images
             form.append("profile_pic", formData.profile_pic);
@@ -170,16 +156,6 @@ const CreateProfile = ({ user, userType = "Vendor", onSuccess }) => {
                         placeholder="Short Bio"
                         required
                     />
-
-                    {/* 🧍 Walker Fields */}
-                    {userType === "Walker" && (
-                        <>
-                            <input type="number" name="experience" value={formData.experience} onChange={handleChange} placeholder="Experience (years)" required />
-                            <input type="text" name="walking_speed" value={formData.walking_speed} onChange={handleChange} placeholder="Walking Speed" required />
-                            <input type="text" name="preferred_time" value={formData.preferred_time} onChange={handleChange} placeholder="Preferred Time" required />
-                            <input type="number" name="price_per_hour" value={formData.price_per_hour} onChange={handleChange} placeholder="Price per Hour" required />
-                        </>
-                    )}
 
                     <label>Profile Picture</label>
                     <input type="file" name="profile_pic" accept="image/*" onChange={handleChange} required />

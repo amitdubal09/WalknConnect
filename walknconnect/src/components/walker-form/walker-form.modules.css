@@ -1,0 +1,50 @@
+/* ===============================
+   Walker Form Section
+================================ */
+.walker-form-container {
+    margin-top: 32px;
+}
+
+/* Section title */
+.walker-form-container h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 14px;
+    color: #111;
+}
+
+/* ===============================
+   Form Layout
+================================ */
+.walker-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+/* ===============================
+   Inputs
+================================ */
+.walker-form input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #afb3b8;
+    outline: none;
+    transition: border 0.25s ease, box-shadow 0.25s ease;
+    font-family: inherit;
+}
+
+.walker-form input:focus {
+    border-color: #000;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 768px) {
+    .walker-form {
+        max-width: 100%;
+    }
+}

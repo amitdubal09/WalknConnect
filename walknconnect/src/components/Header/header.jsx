@@ -19,7 +19,7 @@ const Header = () => {
             <Link to="/" id='hyperlink'>
                 <div className="left-nav">
                     <div id="icon">
-                        <img src="./icon.png" alt="logo" />
+                        <img src="/icon.png" alt="logo" />
                     </div>
                     <span id='logoname'>walknConnect</span>
                 </div>

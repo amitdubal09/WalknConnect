@@ -10,6 +10,7 @@ import LogReg from "./pages/Auth/log-reg.jsx";
 import Profile from "./pages/Profile/profile.jsx";
 import UpdateProfile from "./pages/update-profile/update-profile.jsx";
 import Walker from "./pages/walker/walker.jsx";
+import WalkerDetails from './pages/walker-details/walker-details.jsx';
 
 
 const App = () => {
@@ -49,7 +50,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        
+
         <Route
           path="/walker"
           element={
@@ -57,6 +58,20 @@ const App = () => {
               <>
                 <Header />
                 <Walker />
+                <Footer />
+              </>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* walker details page */}
+        <Route
+          path="/walker/:id"
+          element={
+            <ProtectedRoute>
+              <>
+                <Header />
+                <WalkerDetails />
                 <Footer />
               </>
             </ProtectedRoute>

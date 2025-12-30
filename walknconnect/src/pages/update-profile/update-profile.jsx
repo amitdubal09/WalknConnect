@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./update-profile.modules.css";
+import WalkerForm from "../../components/walker-form/walker-form.jsx";
 
 export default function UpdateProfile() {
+    const [walkerData, setWalkerData] = useState(null);
     const navigate = useNavigate();
 
-    // Get logged-in user
-    const storedUser = localStorage.getItem("user");
-    const user = storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null;
+    const user = (() => {
+        const raw = localStorage.getItem("user");
+        return raw && raw !== "undefined" ? JSON.parse(raw) : null;
+    })();
 
     const [loading, setLoading] = useState(true);
     const [profile, setProfile] = useState(null);
-    const [userType, setUserType] = useState(null); // Will be set after fetch
     const [formData, setFormData] = useState({
         full_name: "",
         email: "",
@@ -23,15 +25,11 @@ export default function UpdateProfile() {
         bio: "",
         profile_pic: null,
         aadhar_pic: null,
-        experience: "",
-        walking_speed: "",
-        preferred_time: "",
-        price_per_hour: "",
     });
 
     // Fetch profile from DB
     useEffect(() => {
-        if (!user) {
+        if (!user?.id) {
             navigate("/logreg");
             return;
         }
@@ -46,10 +44,6 @@ export default function UpdateProfile() {
                 if (data.success) {
                     setProfile(data.profile);
 
-                    // Determine userType (walker/vendor) and store lowercase
-                    const type = (data.profile.user_type || user.user_type || "vendor").toLowerCase();
-                    setUserType(type);
-
                     // Pre-fill formData
                     setFormData({
                         full_name: data.profile.full_name || user.name || "",
@@ -62,10 +56,6 @@ export default function UpdateProfile() {
                         bio: data.profile.bio || "",
                         profile_pic: null,
                         aadhar_pic: null,
-                        experience: data.profile.experience || "",
-                        walking_speed: data.profile.walking_speed || "",
-                        preferred_time: data.profile.preferred_time || "",
-                        price_per_hour: data.profile.price_per_hour || "",
                     });
                 } else {
                     alert("Failed to fetch profile");
@@ -79,7 +69,7 @@ export default function UpdateProfile() {
         };
 
         fetchProfile();
-    }, [user, navigate]);
+    }, [user?.id, navigate]);
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -95,9 +85,17 @@ export default function UpdateProfile() {
             const form = new FormData();
             form.append("id", user.id);
 
+            // Append common profile fields
             Object.keys(formData).forEach((key) => {
                 form.append(key, formData[key]);
             });
+
+            // Append walker-specific fields if user is a walker
+            if (walkerData) {
+                Object.keys(walkerData).forEach((key) => {
+                    form.append(key, walkerData[key]);
+                });
+            }
 
             const res = await fetch(
                 "http://localhost/WalknConnect/walknconnect-backend/profile.php",
@@ -120,6 +118,7 @@ export default function UpdateProfile() {
             alert("Server error");
         }
     };
+
 
     if (loading) return <div>Loading profile...</div>;
 
@@ -181,39 +180,11 @@ export default function UpdateProfile() {
                         required
                     />
 
-                    {/* Walker-specific fields */}
-                    {userType === "walker" && (
-                        <>
-                            <input
-                                type="number"
-                                name="experience"
-                                value={formData.experience}
-                                onChange={handleChange}
-                                placeholder="Experience (years)"
-                            />
-                            <input
-                                type="text"
-                                name="walking_speed"
-                                value={formData.walking_speed}
-                                onChange={handleChange}
-                                placeholder="Walking Speed (km/h)"
-                            />
-                            <input
-                                type="text"
-                                name="preferred_time"
-                                value={formData.preferred_time}
-                                onChange={handleChange}
-                                placeholder="Preferred Time"
-                            />
-                            <input
-                                type="number"
-                                name="price_per_hour"
-                                value={formData.price_per_hour}
-                                onChange={handleChange}
-                                placeholder="Price per Hour"
-                            />
-                        </>
-                    )}
+                    <WalkerForm
+                        user={profile}
+                        onChange={(data) => setWalkerData(data)}
+                    />
+
 
                     <label>Profile Picture</label>
                     {profile?.profile_pic && !formData.profile_pic && (
