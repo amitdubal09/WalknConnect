@@ -10,7 +10,7 @@
     text-align: center;
     border: 1px solid #e5e7eb;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 15px;
+    margin: 15px 0px;
 }
 
 .user-card:hover {
@@ -41,7 +41,6 @@
     border: 3px solid #4f46e5;
     margin-bottom: 12px;
 }
-
 
 .user-info h3 {
     margin: 10px 0 6px;

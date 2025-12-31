@@ -4,11 +4,17 @@
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
+    padding: 0 5%;
+}
+
+.sub-section-1 {
+    max-width: 500px;
 }
 
 #hero-head {
     font-weight: bold;
     font-size: 55px;
+    line-height: 1.2;
 }
 
 #hero-head-span {
@@ -17,21 +23,33 @@
 
 #hero-para {
     color: rgb(73, 73, 73);
-}
-
-#login-link {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 #link {
+    margin-top: 25px;
+    display: inline-block;
     color: white;
     border-radius: 8px;
-    text-decoration: none;
     background-color: #10b981;
-    padding: 10px 20px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.sub-section-2 img {
-    width: 80%;
-    border-radius: 15px;
+#link:hover {
+    background-color: #059669;
+}
+
+.sub-section-2 {
+    display: flex;
+    justify-content: center;
+}
+
+.sub-section-2 video {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 15px;height: 50vh;
+    object-fit: cover;
 }

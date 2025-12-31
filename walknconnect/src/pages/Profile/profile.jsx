@@ -91,11 +91,30 @@ export default function Profile() {
         );
     }
 
+    const isWalkerProfileIncomplete = (user, profile) => {
+        if (!user || !profile) return false;
+
+        const isWalker =
+            user.role?.toLowerCase() === "walker" ||
+            profile.role?.toLowerCase() === "walker";
+
+        if (!isWalker) return false;
+
+        return (
+            !profile.experience ||
+            profile.experience.toString().trim() === ""
+        );
+    };
 
     // SHOW EXISTING PROFILE
     return (
         <div className="profile-container">
             <div className="profile-wrapper">
+                {isWalkerProfileIncomplete(user, profile) && (
+                    <div className="update-alert">
+                        ⚠️ Please update your profile (Experience is required)
+                    </div>
+                )}
                 <div className="profile-header">
                     <div className="profile-photo-wrapper">
                         <div className="update-profile-wrapper">

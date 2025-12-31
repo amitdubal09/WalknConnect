@@ -8,7 +8,9 @@
 
 /* HERO */
 .hero-section {
-    text-align: center;
+    background-image: url(/walking-about.jpg);
+    background-size: cover;
+    color: white;
     padding: 100px 20px 80px;
 }
 
@@ -21,7 +23,6 @@
 .hero-section p {
     font-size: 1.3rem;
     max-width: 650px;
-    margin: 0 auto;
     line-height: 1.7;
 }
 
